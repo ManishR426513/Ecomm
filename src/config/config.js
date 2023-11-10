@@ -3,7 +3,8 @@ import axios from "axios";
 
 export const withoutAuthAxios = () => {
   return axios.create({
-    baseURL: "http://localhost:7000"
+   //baseURL: process.env.REACT_APP_BASEURL
+   baseURL: "http://localhost:7000"
   });
 };
 

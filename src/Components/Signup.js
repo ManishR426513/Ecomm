@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { withoutAuthAxios } from "../config/config";
 
 const Signup = () => {
   const [data, setdata] = useState({
-    name: "",
+  //  name: "",
     email: "",
     password: "",
     confirmpassword: "",
@@ -16,9 +17,28 @@ const Signup = () => {
       [name]: value,
     }));
   };
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(data);
+   
+   
+
+    const formData={
+      email:data.email,
+      password:data.password
+    }
+  
+    
+   await withoutAuthAxios()
+    .post('/user/createUser',formData)
+    .then((response)=>{
+      console.log(response)
+    }).catch((error)=>{
+      console.log(error)
+    })
+    
+
   };
 
   return (
@@ -37,6 +57,7 @@ const Signup = () => {
           action="#"
           method="POST"
         >
+          {/*
           <div>
             <label
               htmlFor="name"
@@ -57,6 +78,7 @@ const Signup = () => {
               />
             </div>
           </div>
+          */}
           <div>
             <label
               htmlFor="email"
@@ -119,10 +141,10 @@ const Signup = () => {
           </div>
 
           <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
+          <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
               Sign in
             </button>
           </div>
