@@ -19,6 +19,7 @@ export default function Routing() {
         <Route path="/cart" element={<ProductCart />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="/product-detail/:id" element={<ProductDetail />} />
+      
       </Routes>
     </Router>
   );
